@@ -9,8 +9,8 @@
 [data-tema="claro"] {
   --fondo: #fff;
   --texto: #000;
-  --acento: #333;
-  --secundario: #0077cc;
+  --acento: #FFAA00;
+  --secundario: #00BFFF;
   --gris: #444;
 }
 
@@ -24,17 +24,7 @@ body {
   background-color: var(--fondo);
   color: var(--texto);
   font-family: 'Inter', sans-serif;
-}
-
-/* Logo */
-.logo-img {
-  height: 40px;
-  width: auto;
-}
-
-.footer-logo {
-  text-align: center;
-  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Navbar */
@@ -47,9 +37,9 @@ body {
   border-bottom: 1px solid var(--secundario);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
+.logo-img {
+  height: 40px;
+  width: auto;
 }
 
 .nav-links {
@@ -77,14 +67,36 @@ body {
   color: var(--texto);
 }
 
-/* Contador */
-.contador {
-  background-color: var(--secundario);
-  color: var(--fondo);
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--texto);
+  cursor: pointer;
+  display: none;
+}
+
+/* Responsive menú */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: var(--fondo);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 1rem;
+    border: 1px solid var(--secundario);
+    border-radius: 8px;
+  }
+
+  .nav-links.activo {
+    display: flex;
+  }
 }
 
 /* Hero */
@@ -98,6 +110,7 @@ body {
 
 .hero-text {
   max-width: 600px;
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .hero-text h1 {
@@ -160,6 +173,7 @@ body {
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s ease;
+  animation: fadeInUp 0.5s ease forwards;
 }
 
 .producto:hover {
@@ -241,33 +255,52 @@ body {
 
 /* Carrito */
 .carrito {
-  padding: 3rem 2rem;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
   background-color: var(--fondo);
   border-top: 1px solid var(--secundario);
+  border-radius: 10px;
 }
 
 .carrito h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--acento);
+  text-align: center;
 }
 
 .carrito-item {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: #111;
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-size: 1rem;
+  color: var(--texto);
+  gap: 0.5rem;
+}
+
+.carrito-item span {
+  flex: 1;
 }
 
 .carrito-item button {
   background: none;
   border: none;
   color: #FF4D4D;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.carrito-item button:hover {
+  transform: scale(1.2);
 }
 
 #carrito-total {
@@ -275,6 +308,7 @@ body {
   font-weight: bold;
   margin-top: 1rem;
   color: var(--secundario);
+  text-align: right;
 }
 
 /* Formulario cliente */
@@ -303,6 +337,26 @@ input.error {
   background-color: #220000;
 }
 
+/* Vista previa */
+.vista-previa {
+  background-color: #111;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  color: var(--texto);
+  border: 1px solid #333;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.vista-previa:not(.oculto) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Botón WhatsApp */
 .btn-finalizar {
   background-color: #25D366;
@@ -321,22 +375,41 @@ input.error {
   transform: scale(1.05);
 }
 
-/* Vista previa */
-.vista-previa {
-  background-color: #111;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-  color: var(--texto);
-  border: 1px solid #333;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+/* Botón flotante WhatsApp */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  z-index: 1000;
+  text-decoration: none;
 }
 
-.vista-previa:not(.oculto) {
-  opacity: 1;
-  transform: translateY(0);
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Accesibilidad */
+button:focus,
+a:focus {
+  outline: 2px solid var(--secundario);
+  outline-offset: 2px;
 }
 
 /* Footer */
@@ -346,78 +419,10 @@ input.error {
   color: var(--gris);
 }
 
+/* Responsive ajustes adicionales */
 @media (max-width: 600px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-
-  .hero-text h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-text p {
-    font-size: 1rem;
-  }
-
-  .hero-img img {
-    max-width: 300px;
-    margin-top: 1rem;
-  }
-
-  .producto img {
-    max-width: 160px;
-    margin: 0 auto 1rem;
-    display: block;
-  }
-
-  .catalogo h2,
-  .carrito h2 {
-    font-size: 2rem;
-  }
-
-  .form-cliente input {
-    font-size: 0.95rem;
-  }
-
-  .btn,
-  .btn-agregar,
-  .btn-finalizar,
-  .btn-compartir,
-  .btn-enviar-reseña {
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .producto {
+  .carrito {
     padding: 1rem;
-  }
-
-  .producto h3 {
-    font-size: 1.2rem;
-  }
-
-  .precio {
-    font-size: 1rem;
-  }
-
-  .selector-talla {
-    font-size: 0.95rem;
-  }
-
-  .reseñas textarea {
-    font-size: 0.95rem;
-  }
-
-  .logo-img {
-    height: 32px;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
   }
 
   .carrito-item {
@@ -426,11 +431,36 @@ input.error {
     gap: 0.5rem;
   }
 
+  .carrito-item span {
+    width: 100%;
+  }
+
+  #carrito-total {
+    text-align: left;
+  }
+
+  .btn-finalizar {
+    width: 100%;
+  }
+
   .vista-previa {
     font-size: 0.95rem;
   }
 
+  .form-cliente input {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
   .footer-text {
     font-size: 0.85rem;
+  }
+
+  .logo-img {
+    height: 32px;
   }
 }

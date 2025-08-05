@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleTema = document.getElementById("toggle-tema");
   const root = document.documentElement;
+  const toggleTema = document.getElementById("toggle-tema");
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
 
   // 🌗 Tema claro/oscuro
   const temaGuardado = localStorage.getItem("tema");
@@ -10,6 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const actual = root.getAttribute("data-tema") === "claro" ? "oscuro" : "claro";
     root.setAttribute("data-tema", actual);
     localStorage.setItem("tema", actual);
+  });
+
+  // 📱 Menú responsive
+  menuToggle?.addEventListener("click", () => {
+    navLinks.classList.toggle("activo");
   });
 
   // 💬 Reseñas
@@ -42,13 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const mensaje = `¡Mira este producto en Realia Real Styles!\n${nombre} (${talla}) - ${precio}`;
+      const mensaje = `¡Mira este producto en Realidad Real Styles!\n${nombre} (${talla}) - ${precio}`;
       const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank", "noopener");
     });
   });
 
-  // 🛒 Agregar al carrito con animación y sonido
+  // 🛒 Agregar al carrito
   document.querySelectorAll(".btn-agregar").forEach(btn => {
     btn.addEventListener("click", () => {
       const producto = btn.closest(".producto");
@@ -62,13 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const nuevoItem = {
-        nombre,
-        precio,
-        talla,
-        cantidad: 1
-      };
-
+      const nuevoItem = { nombre, precio, talla, cantidad: 1 };
       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
       const existente = carrito.find(item => item.nombre === nombre && item.talla === talla);
@@ -84,16 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (contador) {
         const totalCantidad = carrito.reduce((acc, item) => acc + item.cantidad, 0);
         contador.textContent = totalCantidad;
+        contador.classList.add("actualizado");
+        setTimeout(() => contador.classList.remove("actualizado"), 300);
       }
 
-      // ✈️ Fly to cart animation
       const img = producto.querySelector("img");
       const carritoIcono = document.getElementById("contador-carrito");
-      if (img && carritoIcono) {
-        flyToCart(img, carritoIcono);
-      }
+      if (img && carritoIcono) flyToCart(img, carritoIcono);
 
-      // 🔊 Sonido al agregar
       const sonidoAgregar = document.getElementById("sonido-agregar");
       if (sonidoAgregar) sonidoAgregar.play();
 
@@ -101,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✈️ Fly to cart function
+  // ✈️ Animación fly-to-cart
   function flyToCart(img, target) {
     const clone = img.cloneNode(true);
     const imgRect = img.getBoundingClientRect();
@@ -129,51 +128,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       clone.remove();
     }, 900);
-  }
-
-  // ✅ Finalizar compra (solo si estás en carrito.html)
-  const botonFinalizar = document.getElementById("finalizar-compra");
-  if (botonFinalizar) {
-    botonFinalizar.addEventListener("click", () => {
-      const nombreInput = document.getElementById("nombre-cliente");
-      const direccionInput = document.getElementById("direccion-cliente");
-      const nombreCliente = nombreInput.value.trim();
-      const direccionCliente = direccionInput.value.trim();
-
-      nombreInput.classList.remove("error");
-      direccionInput.classList.remove("error");
-
-      if (!nombreCliente || !direccionCliente) {
-        if (!nombreCliente) nombreInput.classList.add("error");
-        if (!direccionCliente) direccionInput.classList.add("error");
-        return;
-      }
-
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-
-      let mensaje = `¡Hola! Soy ${nombreCliente} y quiero hacer este pedido:\n\n`;
-      carrito.forEach(item => {
-        mensaje += `• ${item.nombre} (${item.talla}) x${item.cantidad} – ${item.precio * item.cantidad} CUP\n`;
-      });
-
-      const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-      mensaje += `\nTotal: ${total} CUP\n`;
-      mensaje += `Dirección: ${direccionCliente}\n\n¿Podemos coordinar el pago?`;
-
-      const numeroWhatsApp = '+5354017939'; // ← Reemplaza con tu número real
-      const url = `https://wa.me/${numeroWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
-      window.open(url, '_blank');
-
-      // 🔊 Sonido al finalizar
-      const sonidoFinalizar = document.getElementById("sonido-finalizar");
-      if (sonidoFinalizar) sonidoFinalizar.play();
-
-      localStorage.removeItem("carrito");
-      alert("✅ ¡Pedido enviado por WhatsApp!");
-    });
   }
 });

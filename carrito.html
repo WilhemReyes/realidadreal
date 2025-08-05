@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-tema="oscuro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,11 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">Realia Real Styles</div>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Logo Dorado.png" alt="Logo Realidad Real Styles" class="logo-img" />
+      </a>
+    </div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">← Volver a tienda</a></li>
@@ -24,7 +28,6 @@
     <form id="form-cliente" class="form-cliente">
       <input type="text" id="nombre-cliente" placeholder="Tu nombre" required />
       <input type="text" id="direccion-cliente" placeholder="Dirección o zona de entrega" required />
-    
     </form>
 
     <button id="ver-previa" class="btn">Ver vista previa</button>
@@ -34,8 +37,14 @@
   </main>
 
   <footer>
-    <p class="footer-text">© 2025 Realiadad Real Styles</p>
+    <div class="footer-logo">
+      <img src="Blanco y Negro Logo.png" alt="Logo Realidad Real Styles" class="logo-img" />
+    </div>
+    <p class="footer-text">© 2025 Realidad Real Styles</p>
   </footer>
+
+  <!-- Sonido al finalizar -->
+  <audio id="sonido-finalizar" src="Succes.mp3" preload="auto"></audio>
 
   <script src="carrito.js"></script>
 </body>
