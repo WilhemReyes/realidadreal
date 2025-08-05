@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu carrito – Realidad Real Styles</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Realia Real Styles</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">← Volver a tienda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="carrito">
+    <h2>🛒 Tu carrito</h2>
+    <div id="carrito-items"></div>
+    <p id="carrito-total">Total: 0 CUP</p>
+
+    <form id="form-cliente" class="form-cliente">
+      <input type="text" id="nombre-cliente" placeholder="Tu nombre" required />
+      <input type="text" id="direccion-cliente" placeholder="Dirección o zona de entrega" required />
+    
+    </form>
+
+    <button id="ver-previa" class="btn">Ver vista previa</button>
+    <div id="vista-previa" class="vista-previa oculto"></div>
+
+    <button id="finalizar-compra" class="btn-finalizar">Finalizar compra por WhatsApp</button>
+  </main>
+
+  <footer>
+    <p class="footer-text">© 2025 Realiadad Real Styles</p>
+  </footer>
+
+  <script src="carrito.js"></script>
+</body>
+</html>

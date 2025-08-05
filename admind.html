@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin – Realia Real Styles</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Panel Admin</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">← Volver a tienda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="admin">
+    <h2>Agregar nuevo producto</h2>
+    <form id="form-producto" class="form-cliente">
+      <label for="nombre">Nombre del producto:</label>
+      <input type="text" id="nombre" placeholder="Ej. Camiseta Minimalista" required />
+
+      <label for="precio">Precio en CUP:</label>
+      <input type="number" id="precio" placeholder="Ej. 1200" required />
+
+      <label for="imagen">Ruta de imagen:</label>
+      <input type="text" id="imagen" placeholder="Ej. assets/img/camiseta.jpg" required />
+
+      <label for="tipo">Tipo de producto:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Selecciona una opción</option>
+        <option value="ropa">Ropa</option>
+        <option value="zapatos">Zapatos</option>
+        <option value="accesorio">Accesorio</option>
+      </select>
+
+      <button type="submit" class="btn">Guardar producto</button>
+    </form>
+
+    <h2>Productos actuales</h2>
+    <div id="lista-productos" class="productos"></div>
+  </main>
+
+  <footer>
+    <p class="footer-text">© 2025 Realia Real Styles</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('form-producto');
+    const lista = document.getElementById('lista-productos');
+
+    function cargarProductos() {
+      const productos = JSON.parse(localStorage.getItem('productos')) || [];
+      lista.innerHTML = '';
+      productos.forEach((p, index) => {
+        const div = document.createElement('div');
+        div.classList.add('producto');
+        div.innerHTML = `
+          <img src="${p.imagen}" alt="${p.nombre}" />
+          <h3>${p.nombre}</h3>
+          <p class="precio">${p.precio} CUP</p>
+          <p><strong>Tipo:</strong> ${p.tipo}</p>
+          <button onclick="eliminarProducto(${index})">Eliminar</button>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    function eliminarProducto(index) {
+      const productos = JSON.parse(localStorage.getItem('productos')) || [];
+      productos.splice(index, 1);
+      localStorage.setItem('productos', JSON.stringify(productos));
+      cargarProductos();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const precio = parseInt(document.getElementById('precio').value);
+      const imagen = document.getElementById('imagen').value.trim();
+      const tipo = document.getElementById('tipo').value;
+
+      if (!nombre || !precio || !imagen || !tipo) return;
+
+      const nuevoProducto = { nombre, precio, imagen, tipo };
+      const productos = JSON.parse(localStorage.getItem('productos')) || [];
+      productos.push(nuevoProducto);
+      localStorage.setItem('productos', JSON.stringify(productos));
+      form.reset();
+      cargarProductos();
+    });
+
+    cargarProductos();
+  </script>
+</body>
+</html>

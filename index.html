@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Realidad Real Styles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="Logo Dorado.png" alt="Logo Realidad Real Styles" class="logo-img" />
+      </a>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="sobre.html">Sobre nosotros</a></li>
+        <li><a href="carrito.html">🛒 Carrito <span id="contador-carrito" class="contador">0</span></a></li>
+        <li><button id="toggle-tema">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Estilo real. Actitud real.</h1>
+        <p>Moda urbana con esencia cubana y alma local.</p>
+        <a href="#" class="btn">Explorar</a>
+      </div>
+      <div class="hero-img">
+        <img src="man-7023629.jpg" alt="Modelo fashion con ropa urbana cubana" />
+      </div>
+    </section>
+
+    <section class="catalogo">
+      <h2>Nuestros productos</h2>
+      <div class="productos">
+        <div class="producto">
+          <img src="t-shirt-1278404_1920.jpg" alt="Camiseta minimalista blanca con diseño gráfico" />
+          <h3>Camiseta Minimalista</h3>
+          <p class="precio">1,200 CUP</p>
+          <label>Talla:
+            <select class="selector-talla">
+              <option value="">Selecciona</option>
+              <option>S</option><option>M</option><option>L</option><option>XL</option>
+            </select>
+          </label>
+          <button class="btn-agregar">Agregar al carrito</button>
+          <button class="btn-compartir">Compartir</button>
+          <div class="reseñas">
+            <h4>Reseñas</h4>
+            <ul class="lista-reseñas"></ul>
+            <textarea class="nueva-reseña" placeholder="Escribe tu opinión..."></textarea>
+            <button class="btn-enviar-reseña">Enviar</button>
+          </div>
+        </div>
+        <!-- Puedes duplicar este bloque .producto para más productos -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">
+      <img src="Blanco y Negro Logo.png" alt="Logo Realidad Real Styles" class="logo-img" />
+    </div>
+    <p class="footer-text">© 2025 Realidad Real Styles</p>
+  </footer>
+
+  <!-- 🔊 Sonidos -->
+  <audio id="sonido-agregar" src="happy-pop-2-185287.mp3" preload="auto"></audio>
+  <audio id="sonido-finalizar" src="Succes.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
