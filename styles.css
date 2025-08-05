@@ -1022,3 +1022,52 @@ html {
   .logo-img {
     height: 32px;
   }
+@media (max-width: 768px) {
+  .grid-productos {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .producto {
+    padding: 10px;
+  }
+
+  .producto img {
+    width: 100%;
+    height: auto;
+  }
+
+  .titulo-prendas {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .menu-categorias ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contenido-carrito {
+    width: 95%;
+    padding: 20px;
+  }
+
+  #formulario-pedido input,
+  #formulario-pedido select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #finalizar-compra {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .hamburguesa {
+    display: flex;
+  }
+
+  nav.menu-principal {
+    display: none;
+  }
+}
