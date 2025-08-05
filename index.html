@@ -5,23 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Realidad Real Styles</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="Styles.css">
+
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <a href="index.html">
-        <img src="Logo Dorado.png" alt="Logo Realidad Real Styles" class="logo-img" />
-      </a>
-    </div>
-    <nav>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="productos.html">Productos</a></li>
-        <li><a href="marca.html">Marca</a></li>
-        
-        <li><button id="toggle-tema" aria-label="Cambiar tema">🌙</button></li>
-      </ul>
+ <header class="navbar">
+  <div class="logo">
+    <a href="index.html">
+      <img src="Logo Dorado.png" alt="Logo Realidad Real Shop" class="logo-img" />
+    </a>
+  </div>
+
+  <button id="menu-toggle" class="hamburguesa" aria-label="Abrir menú">☰</button>
+
+  <nav id="menu" class="menu oculto">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="marca.html"> Marca </a></li><li></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
       <!-- Botón hamburguesa -->
 <div class="hamburguesa" id="hamburguesa" onclick="toggleMenu()">
   <span></span>
@@ -33,14 +40,6 @@
 <div id="fondo-oscuro" class="oculto" onclick="toggleMenu()"></div>
 
 <!-- Menú móvil -->
-<nav id="menu-movil" class="oculto">
-  <ul>
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="productos.html">Productos</a></li>
-    <li><a href="nosotros.html">Nosotros</a></li>
-    <li><a href="contacto.html">Contacto</a></li>
-  </ul>
-</nav>
 
   </header>
 
@@ -53,7 +52,7 @@
         <a href="productos.html" class="btn">Explorar catálogo</a>
       </div>
       <div class="hero-img">
-        <img src="hero-index.jpg" alt="Estilo urbano cubano" />
+        <img src="man-7023629.jpg" alt="Estilo urbano cubano" />
       </div>
     </section>
 
@@ -113,6 +112,15 @@
     </div>
     <p class="footer-text">© 2025 Realidad Real Styles</p>
   </footer>
+  <script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('activo');
+  });
+</script>
+
 
   <script src="script.js"></script>
 </body>
