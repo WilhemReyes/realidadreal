@@ -1,121 +1,112 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const carritoItems = document.getElementById('carrito-items');
-  const carritoTotal = document.getElementById('carrito-total');
-  const botonFinalizar = document.getElementById('finalizar-compra');
-  const nombreInput = document.getElementById('nombre-cliente');
-  const direccionInput = document.getElementById('direccion-cliente');
-  const botonVistaPrevia = document.getElementById('ver-previa');
-  const vistaPrevia = document.getElementById('vista-previa');
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  let carrito = [];
+document.addEventListener('DOMContentLoaded', () => {
+  actualizarCarrito();
 
-  // 🧊 Cargar carrito desde localStorage
-  function cargarCarrito() {
-    const data = localStorage.getItem('carrito');
-    if (data) {
-      carrito = JSON.parse(data);
+  document.querySelectorAll('.btn-agregar').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const talla = btn.closest('.producto').querySelector('.select-talla').value;
+      if (!talla) {
+        alert('Selecciona una talla antes de añadir al carrito');
+        return;
+      }
+
+      const producto = {
+        id: btn.dataset.id,
+        nombre: btn.dataset.nombre,
+        precio: parseFloat(btn.dataset.precio),
+        talla: talla
+      };
+
+      agregarAlCarrito(producto);
       actualizarCarrito();
-    }
-  }
-
-  // 💰 Calcular total
-  function calcularTotal() {
-    return carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-  }
-
-  // 🖼️ Actualizar vista del carrito
-  function actualizarCarrito() {
-    carritoItems.innerHTML = '';
-
-    carrito.forEach((item, index) => {
-      const div = document.createElement('div');
-      div.classList.add('carrito-item');
-      div.innerHTML = `
-        <span>${item.nombre} (${item.talla}) x${item.cantidad}</span>
-        <span>${item.precio * item.cantidad} CUP</span>
-        <button class="btn-eliminar" data-index="${index}">❌</button>
-      `;
-      carritoItems.appendChild(div);
+      guardarCarrito();
     });
-
-    carritoTotal.textContent = `Total: ${calcularTotal()} CUP`;
-
-    // 🗑️ Eliminar producto
-    document.querySelectorAll('.btn-eliminar').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const index = parseInt(btn.dataset.index);
-        carrito.splice(index, 1);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        actualizarCarrito();
-      });
-    });
-  }
-
-  // 👁️ Vista previa del pedido
-  botonVistaPrevia.addEventListener('click', () => {
-    if (carrito.length === 0) {
-      vistaPrevia.textContent = 'Tu carrito está vacío.';
-      vistaPrevia.classList.remove('oculto');
-      return;
-    }
-
-    const nombreCliente = nombreInput.value.trim();
-    const direccionCliente = direccionInput.value.trim();
-
-    let mensaje = `🧾 Vista previa del pedido:\n\n`;
-    carrito.forEach(item => {
-      mensaje += `• ${item.nombre} (${item.talla}) x${item.cantidad} – ${item.precio * item.cantidad} CUP\n`;
-    });
-
-    mensaje += `\nTotal: ${calcularTotal()} CUP\n`;
-    mensaje += `Nombre: ${nombreCliente || 'No ingresado'}\n`;
-    mensaje += `Dirección: ${direccionCliente || 'No ingresada'}\n`;
-
-    vistaPrevia.textContent = mensaje;
-    vistaPrevia.classList.remove('oculto');
   });
 
-  // 📲 Finalizar compra por WhatsApp
-  botonFinalizar.addEventListener('click', () => {
-    if (carrito.length === 0) {
-      alert('Tu carrito está vacío.');
+  document.getElementById('finalizar-compra').addEventListener('click', () => {
+    const nombre = document.getElementById('nombre').value.trim();
+    const direccion = document.getElementById('direccion').value.trim();
+    const provincia = document.getElementById('provincia').value;
+    const municipio = document.getElementById('municipio').value;
+    const ci = document.getElementById('ci').value.trim();
+
+    if (!nombre || !direccion || !provincia || !municipio || !ci) {
+      alert('Completa todos los campos antes de finalizar la compra');
       return;
     }
 
-    const nombreCliente = nombreInput.value.trim();
-    const direccionCliente = direccionInput.value.trim();
-
-    nombreInput.classList.remove('error');
-    direccionInput.classList.remove('error');
-
-    if (!nombreCliente || !direccionCliente) {
-      if (!nombreCliente) nombreInput.classList.add('error');
-      if (!direccionCliente) direccionInput.classList.add('error');
-      return;
-    }
-
-    let mensaje = `¡Hola! Soy ${nombreCliente} y quiero hacer este pedido:\n\n`;
+    let mensaje = `🛍️ Pedido desde Realidad Real Style\n\n`;
     carrito.forEach(item => {
-      mensaje += `• ${item.nombre} (${item.talla}) x${item.cantidad} – ${item.precio * item.cantidad} CUP\n`;
+      mensaje += `• ${item.nombre} - Talla ${item.talla} (x${item.cantidad}) - $${(item.precio * item.cantidad).toFixed(2)}\n`;
     });
 
-    mensaje += `\nTotal: ${calcularTotal()} CUP\n`;
-    mensaje += `Dirección: ${direccionCliente}\n\n¿Podemos coordinar el pago?`;
+    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    mensaje += `\n💰 Total: $${total.toFixed(2)}\n\n`;
+    mensaje += `📍 Dirección: ${direccion}, ${municipio}, ${provincia}\n👤 Nombre: ${nombre}\n🆔 CI: ${ci}
+    
+    Procedemos con el Pago?\n\n`;
+    
 
-    const numeroWhatsApp = '+5354017939';
-    const url = `https://wa.me/${numeroWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/5354017939?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
+  });
+});
 
-    const sonidoFinalizar = document.getElementById("sonido-finalizar");
-    if (sonidoFinalizar) sonidoFinalizar.play();
+function agregarAlCarrito(producto) {
+  const existente = carrito.find(item => item.id === producto.id && item.talla === producto.talla);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    producto.cantidad = 1;
+    carrito.push(producto);
+  }
+}
 
-    carrito = [];
-    localStorage.removeItem('carrito');
-    actualizarCarrito();
+function actualizarCarrito() {
+  const contenedor = document.getElementById('carrito-contenido');
+  const total = document.getElementById('carrito-total');
+  contenedor.innerHTML = '';
+  let suma = 0;
 
-    vistaPrevia.textContent = '✅ Pedido enviado. Nos pondremos en contacto pronto.';
-    vistaPrevia.classList.remove('oculto');
+  carrito.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.className = 'carrito-item';
+    div.innerHTML = `
+      <span>${item.nombre} - Talla ${item.talla} (x${item.cantidad})</span>
+      <span>$${(item.precio * item.cantidad).toFixed(2)}</span>
+      <button class="eliminar" data-index="${index}">🗑️</button>
+    `;
+    contenedor.appendChild(div);
+    suma += item.precio * item.cantidad;
   });
 
-  cargarCarrito();
-});
+  total.textContent = `Total: $${suma.toFixed(2)}`;
+  actualizarContador();
+
+  document.querySelectorAll('.eliminar').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      carrito.splice(index, 1);
+      actualizarCarrito();
+      guardarCarrito();
+    });
+  });
+}
+
+function actualizarContador() {
+  const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  document.getElementById('contador-carrito').textContent = totalItems;
+}
+
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function abrirCarrito() {
+  document.getElementById('modal-carrito').classList.add('activo');
+}
+
+function cerrarCarrito() {
+  document.getElementById('modal-carrito').classList.remove('activo');
+}

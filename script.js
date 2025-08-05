@@ -61,11 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const producto = btn.closest(".producto");
       const nombre = producto.querySelector("h3").textContent;
       const precioTexto = producto.querySelector(".precio").textContent;
-      const precio = parseInt(precioTexto.replace(/\D/g, ""));
+      const precio = parseFloat(precioTexto.replace(/[^\d.]/g, ""));
       const talla = producto.querySelector(".selector-talla").value;
 
       if (!talla) {
-        alert("Por favor selecciona una talla antes de agregar al carrito.");
+        producto.querySelector(".selector-talla").classList.add("error");
+        setTimeout(() => producto.querySelector(".selector-talla").classList.remove("error"), 1500);
         return;
       }
 
@@ -95,8 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const sonidoAgregar = document.getElementById("sonido-agregar");
       if (sonidoAgregar) sonidoAgregar.play();
-
-      alert("✅ Producto agregado al carrito.");
     });
   });
 
@@ -129,4 +128,23 @@ document.addEventListener("DOMContentLoaded", () => {
       clone.remove();
     }, 900);
   }
+function toggleMenu() {
+  const menu = document.getElementById('menu-movil');
+  const fondo = document.getElementById('fondo-oscuro');
+  const icono = document.getElementById('hamburguesa');
+
+  menu.classList.toggle('activo');
+  fondo.classList.toggle('activo');
+  icono.classList.toggle('activo');
+}
+
+  // 🧵 Filtro por talla
+  document.getElementById('filtro')?.addEventListener('change', e => {
+    const tallaSeleccionada = e.target.value;
+    document.querySelectorAll('.producto').forEach(producto => {
+      const selector = producto.querySelector('.selector-talla');
+      const opciones = Array.from(selector.options).map(opt => opt.value);
+      producto.style.display = !tallaSeleccionada || opciones.includes(tallaSeleccionada) ? 'block' : 'none';
+    });
+  });
 });

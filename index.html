@@ -17,91 +17,93 @@
     <nav>
       <ul class="nav-links" id="nav-links">
         <li><a href="#">Inicio</a></li>
-        <li><a href="sobre.html">Sobre nosotros</a></li>
-        <li><a href="carrito.html">🛒 Carrito <span id="contador-carrito" class="contador">0</span></a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="marca.html">Marca</a></li>
+        
         <li><button id="toggle-tema" aria-label="Cambiar tema">🌙</button></li>
       </ul>
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">☰</button>
-    </nav>
+      <!-- Botón hamburguesa -->
+<div class="hamburguesa" id="hamburguesa" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Fondo oscuro -->
+<div id="fondo-oscuro" class="oculto" onclick="toggleMenu()"></div>
+
+<!-- Menú móvil -->
+<nav id="menu-movil" class="oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+</nav>
+
   </header>
 
   <main>
-    <section class="hero">
+    <!-- Hero principal -->
+    <section class="hero-principal fade-in">
       <div class="hero-text">
-        <h1>Estilo real. Actitud real.</h1>
-        <p>Moda urbana con esencia cubana y alma local.</p>
-        <a href="#catalogo" class="btn">Explorar</a>
+        <h1>Realidad Real Styles</h1>
+        <p>Moda urbana con alma cubana. Estilo que se vive, no se imita.</p>
+        <a href="productos.html" class="btn">Explorar catálogo</a>
       </div>
       <div class="hero-img">
-        <img src="man-7023629.jpg" alt="Modelo fashion con ropa urbana cubana" />
+        <img src="hero-index.jpg" alt="Estilo urbano cubano" />
       </div>
     </section>
 
-    <section class="catalogo" id="catalogo">
-      <h2>Nuestros productos</h2>
-      
+    <!-- Video intro -->
+   <section class="video-intro">
+  <div class="video-wrapper">
+    <video autoplay muted loop playsinline>
+      <source src="Video Index.mp4" type="video/mp4" />
+    </video>
+    <div class="logo-overlay">
+      <img src="Logo Dorado.png" alt="Realidad Real Style Logo" />
+    </div>
+  </div>
+</section>
 
-<!-- ZAPATOS -->
-<h3 class="categoria">Zapatos</h3>
-<div class="productos">
-  <div class="producto"><img src="shoes-584850.jpg" alt="Merrel Sneakers" /><h3>Merrel Sneakers</h3><p class="precio">3,500 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="Nike Air Forces.jpg" alt="nikes" /><h3>Nikes Air Forces</h3><p class="precio">3,200 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="nike-5226091.jpg" alt="Nike Air Forces 1" /><h3>Nike Air Forces 1</h3><p class="precio">4,100 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="Nike Retro.jpg" alt="Nike Retros" /><h3>Nikes Retro</h3><p class="precio">3,800 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="sneaker-4687823.jpg" alt="Nikes Air Jordan 1" /><h3>Nikes Aire Jordan 1</h3><p class="precio">2,400 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
 
-<!-- T-SHIRTS -->
-<h3 class="categoria">T-Shirts</h3>
-<div class="productos">
-  <div class="producto"><img src="shirt1.jpg" alt="T-Shirt Blanca Minimal" /><h3>T-Shirt Blanca Minimal</h3><p class="precio">1,200 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="shirt2.jpg" alt="T-Shirt Negra Oversize" /><h3>T-Shirt Negra Oversize</h3><p class="precio">1,300 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="shirt3.jpg" alt="T-Shirt Estampada Callejera" /><h3>T-Shirt Estampada Callejera</h3><p class="precio">1,500 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="shirt4.jpg" alt="T-Shirt Roja Básica" /><h3>T-Shirt Roja Básica</h3><p class="precio">1,100 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="shirt5.jpg" alt="T-Shirt Verde Neón" /><h3>T-Shirt Verde Neón</h3><p class="precio">1,400 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
 
-<!-- SHORTS -->
-<h3 class="categoria">Shorts</h3>
-<div class="productos">
-  <div class="producto"><img src="short1.jpg" alt="Short Deportivo Gris" /><h3>Short Deportivo Gris</h3><p class="precio">1,800 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="short2.jpg" alt="Short Cargo Negro" /><h3>Short Cargo Negro</h3><p class="precio">2,100 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="short3.jpg" alt="Short Estampado Tropical" /><h3>Short Estampado Tropical</h3><p class="precio">2,000 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="short4.jpg" alt="Short Beige Casual" /><h3>Short Beige Casual</h3><p class="precio">1,900 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="short5.jpg" alt="Short Azul Marino" /><h3>Short Azul Marino</h3><p class="precio">2,050 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
+    <!-- Frases de identidad -->
+    <section class="frases-identidad fade-in">
+      <h2>Vestir es expresar</h2>
+      <p>“Cada prenda cuenta una historia.”</p>
+      <p>“Desde La Habana hasta el mundo.”</p>
+      <p>“Real. Urbano. Cubano.”</p>
+    </section>
 
-<!-- JEANS -->
-<h3 class="categoria">Jeans</h3>
-<div class="productos">
-  <div class="producto"><img src="jeans1.jpg" alt="Jeans Azul Clásico" /><h3>Jeans Azul Clásico</h3><p class="precio">2,800 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>28</option><option>30</option><option>32</option><option>34</option><option>36</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="jeans2.jpg" alt="Jeans Negro Slim" /><h3>Jeans Negro Slim</h3><p class="precio">3,000 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>28</option><option>30</option><option>32</option><option>34</option><option>36</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="jeans3.jpg" alt="Jeans Rotos Urbanos" /><h3>Jeans Rotos Urbanos</h3><p class="precio">3,200 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>28</option><option>30</option><option>32</option><option>34</option><option>36</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="jeans4.jpg" alt="Jeans Azul Deslavado" /><h3>Jeans Azul Deslavado</h3><p class="precio">2,900 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>28</option><option>30</option><option>32</option><option>34</option><option>36</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="jeans5.jpg" alt="Jeans Cargo Oscuro" /><h3>Jeans Cargo Oscuro</h3><p class="precio">3,300 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>28</option><option>30</option><option>32</option><option>34</option><option>36</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
-
-<h3 class="categoria">Sets</h3>
-<div class="productos">
-  <div class="producto"><img src="set1.jpg" alt="Set Deportivo Gris" /><h3>Set Deportivo Gris</h3><p class="precio">3,800 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="set2.jpg" alt="Set Casual Negro" /><h3>Set Casual Negro</h3><p class="precio">4,000 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="set3.jpg" alt="Set Estampado Tropical" /><h3>Set Estampado Tropical</h3><p class="precio">4,200 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="set4.jpg" alt="Set Beige Elegante" /><h3>Set Beige Elegante</h3><p class="precio">4,100 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="set5.jpg" alt="Set Azul Marino" /><h3>Set Azul Marino</h3><p class="precio">3,900 CUP</p><label>Talla:<select class="selector-talla"><option value="">Selecciona</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
-
-<h3 class="categoria">Artículos</h3>
-<div class="productos">
-  <div class="producto"><img src="articulo1.jpg" alt="Gorra Negra Clásica" /><h3>Gorra Negra Clásica</h3><p class="precio">800 CUP</p><label>Talla:<select class="selector-talla"><option value="">Única</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="articulo2.jpg" alt="Mochila Urbana Gris" /><h3>Mochila Urbana Gris</h3><p class="precio">2,500 CUP</p><label>Talla:<select class="selector-talla"><option value="">Única</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="articulo3.jpg" alt="Lentes de Sol Retro" /><h3>Lentes de Sol Retro</h3><p class="precio">1,200 CUP</p><label>Talla:<select class="selector-talla"><option value="">Única</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="articulo4.jpg" alt="Riñonera Negra" /><h3>Riñonera Negra</h3><p class="precio">1,600 CUP</p><label>Talla:<select class="selector-talla"><option value="">Única</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-  <div class="producto"><img src="articulo5.jpg" alt="Pulsera de Cuero" /><h3>Pulsera de Cuero</h3><p class="precio">950 CUP</p><label>Talla:<select class="selector-talla"><option value="">Única</option></select></label><button class="btn-agregar">Agregar al carrito</button><button class="btn-compartir">Compartir</button></div>
-</div>
-
-          </div>
+    <!-- Productos destacados -->
+    <section class="destacados fade-in">
+      <h2>Destacados</h2>
+      <div class="productos-mini">
+        <div class="producto-mini">
+          <img src="nike-air.jpg" alt="Nike Air Forces" />
+          <p>Nike Air Forces – 3,200 CUP</p>
+        </div>
+        <div class="producto-mini">
+          <img src="shirt-negra.jpg" alt="T-Shirt Negra Oversize" />
+          <p>T-Shirt Negra Oversize – 1,300 CUP</p>
+        </div>
+        <div class="producto-mini">
+          <img src="short-cargo.jpg" alt="Short Cargo Negro" />
+          <p>Short Cargo Negro – 2,100 CUP</p>
         </div>
       </div>
+      <a href="productos.html" class="btn">Ver más</a>
+    </section>
+
+    <!-- CTA final -->
+    <section class="cta-final fade-in">
+      <h2>¿Listo para vestir tu realidad?</h2>
+      <a href="productos.html" class="btn">Explorar productos</a>
+      <a href="https://wa.me/5354017939" class="btn-whatsapp">💬 WhatsApp</a>
     </section>
   </main>
 
@@ -111,13 +113,6 @@
     </div>
     <p class="footer-text">© 2025 Realidad Real Styles</p>
   </footer>
-
-  <!-- Botón flotante WhatsApp -->
-  <a href="https://wa.me/5354017939" class="btn-whatsapp" aria-label="Contáctanos por WhatsApp">💬</a>
-
-  <!-- Sonidos -->
-  <audio id="sonido-agregar" src="happy-pop-2-185287.mp3" preload="auto"></audio>
-  <audio id="sonido-finalizar" src="Succes.mp3" preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos - Realidad Real Style</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🧢 Header urbano -->
+  <header class="header-prendas">
+    <div class="overlay-logo"></div>
+    <h1 class="titulo-prendas">Prendas</h1>
+  </header>
+
+  <!-- 🧭 Menú de navegación por categorías -->
+  <nav class="menu-categorias">
+    <ul>
+      <li><a href="#zapatos">Zapatos</a></li>
+      <li><a href="#tshirts">T-Shirts</a></li>
+      <li><a href="#shorts">Shorts</a></li>
+      <li><a href="#jeans">Jeans</a></li>
+      <li><a href="#sets">Sets</a></li>
+      <li><a href="#articulos">Artículos</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🛍️ Sección de productos -->
+  <section class="categoria" id="zapatos">
+    <h2>Zapatos</h2>
+    <div class="grid-productos">
+      <div class="producto" data-nombre="Air Max" data-categoria="zapatos" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Air Max">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+        <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+       <div class="producto" data-nombre="Air Max" data-categoria="zapatos" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Air Max">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+        <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+       <div class="producto" data-nombre="Air Max" data-categoria="zapatos" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Air Max">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+        <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+       <div class="producto" data-nombre="Air Max" data-categoria="zapatos" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Air Max">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+        <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+       <div class="producto" data-nombre="Air Max" data-categoria="zapatos" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Air Max">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+        <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+  <section class="categoria" id="T-Shirts">
+    <h2>T-Shirts</h2>
+    <div class="grid-productos">
+      <div class="producto" data-nombre="Cuidado con el Perro" data-categoria="T-Shirts" data-precio="59.99">
+        <img src="img/zapatos1.jpg" alt="Cuidado con el Perro">
+        <h3>Air Max</h3>
+        <p>$59.99</p>
+        <select class="select-talla">
+          <option value="">Talla</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+          <option>41</option>
+          <option>42</option>
+        </select>
+         <button class="btn-agregar" data-id="zap1" data-nombre="Air Max" data-precio="59.99">Añadir al carrito</button>
+      </div>
+      <!-- Repite 4 productos más aquí -->
+    </div>
+  </section>
+
+  <!-- 🛒 Burbuja flotante del carrito -->
+  <div id="burbuja-carrito" onclick="abrirCarrito()">
+    🛒 <span id="contador-carrito">0</span>
+  </div>
+
+  <!-- 🧾 Modal del carrito -->
+  <div id="modal-carrito" class="oculto">
+    <div class="contenido-carrito">
+      <h2>Tu pedido</h2>
+      <div id="carrito-contenido"></div>
+      <h3 id="carrito-total">Total: $0.00</h3>
+
+      <form id="formulario-pedido">
+        <input type="text" placeholder="Nombre y Apellidos" id="nombre" required>
+        <input type="text" placeholder="Dirección de entrega" id="direccion" required>
+
+        <select id="provincia" required>
+          <option value="La Habana">La Habana</option>
+        </select>
+
+        <select id="municipio" required>
+          <option value="">Selecciona municipio</option>
+          <option>Playa</option>
+          <option>Centro Habana</option>
+          <option>La Habana Vieja</option>
+          <option>Marianao</option>
+          <option>Boyeros</option>
+          <option>Diez de Octubre</option>
+          <option>San Miguel del Padrón</option>
+          <option>Arroyo Naranjo</option>
+          <option>La Lisa</option>
+          <option>Habana del Este</option>
+          <option>Cerro</option>
+        </select>
+
+        <input type="text" placeholder="Número de identidad (CI)" id="ci" required>
+        <button type="button" id="finalizar-compra">Finalizar compra por WhatsApp</button>
+      </form>
+
+      <button type="button" onclick="cerrarCarrito()">Cerrar</button>
+    </div>
+  </div>
+<audio id="sonido-agregar" src="happy-pop-2-185287.mp3"></audio>
+<audio id="sonido-finalizar" src="Succes.mp3"></audio>
+
+  <script src="carrito.js"></script>
+</body>
+</html>
